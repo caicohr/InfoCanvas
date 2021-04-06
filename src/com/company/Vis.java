@@ -51,11 +51,6 @@ public class Vis extends JPanel implements MouseListener {
         traffic = new ArrayList<>();
         timePosition = 0;
         try {
-            backgroundImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\backgroundpark.png"));
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-        try {
             trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\traffic1.jpg"));
         } catch (IOException ex) {
             System.out.println(ex);
@@ -120,6 +115,15 @@ public class Vis extends JPanel implements MouseListener {
             }
         };
         tim = new Timer(1000, animateTime);
+    }
+
+    public void setBackgroundImage(String s) {
+        try {
+            backgroundImage = ImageIO.read(new File(s));
+            repaint();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     public void stopTimer() {

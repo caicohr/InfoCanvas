@@ -97,6 +97,8 @@ public class Main extends JFrame{
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenu timerMenu = new JMenu("Timer");
+        JMenu backgroundImageSubMenu = new JMenu("Background Image");
+        JMenuItem park = new JMenuItem("Park");
         JMenuItem first = new JMenuItem("First");
         JMenuItem time = new JMenuItem("Add Time");
         JMenuItem weather = new JMenuItem("Add Weather");
@@ -110,6 +112,8 @@ public class Main extends JFrame{
         fileMenu.add(time);
         fileMenu.add(weather);
         fileMenu.add(traffic);
+        fileMenu.add(backgroundImageSubMenu);
+        backgroundImageSubMenu.add(park);
         timerMenu.add(startTimer);
         timerMenu.add(stopTimer);
 
@@ -139,6 +143,13 @@ public class Main extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 queryTraffic();
+            }
+        });
+
+        park.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.setBackgroundImage("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\backgroundpark.png");
             }
         });
 
