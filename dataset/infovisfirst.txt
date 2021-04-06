@@ -1,0 +1,31 @@
+connect 'jdbc:derby:infovis;create=true;
+drop table infovis;
+create table infovis (
+ time float,
+ weather varchar(10),
+ traffic varchar(10)
+);
+insert into infovis values (0,'cold','light');
+insert into infovis values (1,'hot','light');
+insert into infovis values (2,'cold','light');
+insert into infovis values (3,'cold','light');
+insert into infovis values (4,'hot','light');
+insert into infovis values (5,'hot','light');
+insert into infovis values (6,'cold','medium');
+insert into infovis values (7,'cold','medium');
+insert into infovis values (8,'cold','heavy');
+insert into infovis values (9,'hot','heavy');
+insert into infovis values (10,'hot','heavy');
+insert into infovis values (11,'hot','heavy');
+insert into infovis values (12,'cold','medium');
+insert into infovis values (13,'cold','medium');
+insert into infovis values (14,'cold','medium');
+insert into infovis values (15,'cold','medium');
+insert into infovis values (16,'hot','medium');
+insert into infovis values (17,'hot','light');
+insert into infovis values (18,'hot','light');
+insert into infovis values (19,'hot','light');
+insert into infovis values (20,'hot','light');
+insert into infovis values (21,'hot','none');
+insert into infovis values (22,'hot','none');
+insert into infovis values (23,'hot','none');

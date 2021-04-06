@@ -37,6 +37,9 @@ public class Vis extends JPanel implements MouseListener {
 
     //For Traffic Canvas
     private BufferedImage trafficImage;
+    private BufferedImage trafficImageLight;
+    private BufferedImage trafficImageMedium;
+    private BufferedImage trafficImageHeavy;
 
     //For accessing data
     private int accessIndex;
@@ -50,11 +53,6 @@ public class Vis extends JPanel implements MouseListener {
         weather = new ArrayList<>();
         traffic = new ArrayList<>();
         timePosition = 0;
-        try {
-            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\traffic1.jpg"));
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
 
         ActionListener animateTime = new ActionListener() {
             @Override
@@ -90,18 +88,43 @@ public class Vis extends JPanel implements MouseListener {
                 String compareTraffic = traffic.get(accessIndex);
                 if (compareTraffic.equals("light")) {
                     try {
-                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\traffic1.jpg"));
-                        //System.out.println("Not the same");
-                        repaint();
+                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
+                        trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
+                        trafficImageMedium = null;
+                        trafficImageHeavy =null;
                     } catch (IOException ex) {
                         System.out.println(ex);
                     }
-                    //System.out.println("Traffic is light");
+                    System.out.println("Traffic is light");
                 } else if(compareTraffic.equals("medium")) {
+                    try {
+                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
+                        trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
+                        trafficImageMedium = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficMedium.jpg"));
+                        trafficImageHeavy = null;
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                     System.out.println("Traffic is medium");
                 } else if(compareTraffic.equals("heavy")) {
+                    try {
+                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
+                        trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
+                        trafficImageMedium = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficMedium.jpg"));
+                        trafficImageHeavy = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficHeavy.jpg"));
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                     System.out.println("Traffic is heavy!");
                 } else {
+                    try {
+                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
+                        trafficImageLight = null;
+                        trafficImageMedium = null;
+                        trafficImageHeavy = null;
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                     System.out.println("Traffic is none");
                 }
 
@@ -207,7 +230,10 @@ public class Vis extends JPanel implements MouseListener {
         }
 
         if (!traffic.isEmpty()) {
-            g.drawImage(trafficImage,w/2,h/2,w/(traffic.size() / 2),h/8,this);
+            g.drawImage(trafficImage,((w/4) * 2) + 15,((h/4) * 3) - (((h/4) * 3)/12),w/(traffic.size()/3),h/9,this);
+            g.drawImage(trafficImageLight,(((w/4) * 2) - (w/(traffic.size()/3))) + 10,((h/4) * 3) - (((h/4) * 3)/12),w/(traffic.size()/3),h/9,this);
+            g.drawImage(trafficImageMedium,((w/4) * 1) + 5,((h/4) * 3) - (((h/4) * 3)/12),w/(traffic.size()/3),h/9,this);
+            g.drawImage(trafficImageHeavy,(w/4) - (w/(traffic.size()/3)) ,((h/4) * 3) - (((h/4) * 3)/12),w/(traffic.size()/3),h/9,this);
         }
     }
 
