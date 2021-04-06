@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Main extends JFrame{
 
     private Vis mainPanel;
-    Timer timer;
     private ArrayList<Float> time;
 
     public Main() {
@@ -23,7 +22,7 @@ public class Main extends JFrame{
         mainPanel = new Vis();
         setContentPane(mainPanel);
 
-        setSize(800,600);
+        setSize(1000,800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Info Canvas");
         setVisible(true);
@@ -31,7 +30,7 @@ public class Main extends JFrame{
 
     private void countRows() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\Infovis Bar Line Charts\\forinfocanvas\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("SELECT COUNT(*) FROM infovis");
             rs.next();
@@ -46,7 +45,7 @@ public class Main extends JFrame{
     private void queryTime() {
         try {
             mainPanel.resetTime();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\Infovis Bar Line Charts\\forinfocanvas\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select Time From infovis");
             while (rs.next()) {
@@ -63,12 +62,29 @@ public class Main extends JFrame{
     private void queryWeather() {
         try {
             mainPanel.resetWeather();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\Infovis Bar Line Charts\\forinfocanvas\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select weather From infovis");
             while (rs.next()) {
                 String str = rs.getString(1);
                 mainPanel.addToWeather(str);
+                repaint();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Could not connect to Derby");
+        }
+    }
+
+    private void queryTraffic() {
+        try {
+            mainPanel.resetTraffic();
+            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("Select traffic From infovis");
+            while (rs.next()) {
+                String str = rs.getString(1);
+                mainPanel.addToTraffic(str);
                 repaint();
             }
         } catch (SQLException e) {
@@ -84,6 +100,7 @@ public class Main extends JFrame{
         JMenuItem first = new JMenuItem("First");
         JMenuItem time = new JMenuItem("Add Time");
         JMenuItem weather = new JMenuItem("Add Weather");
+        JMenuItem traffic = new JMenuItem("Add Traffic");
         JMenuItem startTimer = new JMenuItem("Start Timer");
         JMenuItem stopTimer = new JMenuItem("Stop Timer");
 
@@ -92,6 +109,7 @@ public class Main extends JFrame{
         fileMenu.add(first);
         fileMenu.add(time);
         fileMenu.add(weather);
+        fileMenu.add(traffic);
         timerMenu.add(startTimer);
         timerMenu.add(stopTimer);
 
@@ -114,6 +132,13 @@ public class Main extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 queryWeather();
+            }
+        });
+
+        traffic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                queryTraffic();
             }
         });
 

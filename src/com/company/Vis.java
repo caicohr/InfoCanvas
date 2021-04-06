@@ -19,10 +19,14 @@ public class Vis extends JPanel implements MouseListener {
     private int w;
     private ArrayList<Float> time;
     private ArrayList<String> weather;
+    private ArrayList<String> traffic;
     private Timer tim;
 
     //For showing Bar Chart
     private BarChart barChart;
+
+    //For Background Image
+    private BufferedImage backgroundImage;
 
     //For Time Canvas
     private BufferedImage timeImage;
@@ -30,6 +34,9 @@ public class Vis extends JPanel implements MouseListener {
 
     //For Weather Canvas
     private BufferedImage weatherImage;
+
+    //For Traffic Canvas
+    private BufferedImage trafficImage;
 
     //For accessing data
     private int accessIndex;
@@ -41,7 +48,18 @@ public class Vis extends JPanel implements MouseListener {
         barChart = new BarChart();
         time = new ArrayList<>();
         weather = new ArrayList<>();
+        traffic = new ArrayList<>();
         timePosition = 0;
+        try {
+            backgroundImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\backgroundpark.png"));
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        try {
+            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\traffic1.jpg"));
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
 
         ActionListener animateTime = new ActionListener() {
             @Override
@@ -52,10 +70,11 @@ public class Vis extends JPanel implements MouseListener {
 //                for (int i = timerSize -1; i > 0; i--){
 //                    Collections.swap(time, i, i - 1);
 //                }
+                //Weather comparison for displaying on canvas
                 String compareWeather = weather.get(accessIndex);
                 if (compareWeather.equals("cold")) {
                     try {
-                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\Final Project\\weathercold.jpg"));
+                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weathercold.jpg"));
                         //System.out.println("SAME");
                         repaint();
                     } catch (IOException ex) {
@@ -64,13 +83,33 @@ public class Vis extends JPanel implements MouseListener {
                 }
                 else {
                     try {
-                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\Final Project\\weather1.png"));
+                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weather1.png"));
                         //System.out.println("Not the same");
                         repaint();
                     } catch (IOException ex) {
                         System.out.println(ex);
                     }
                 }
+
+                //Traffic comparison
+                String compareTraffic = traffic.get(accessIndex);
+                if (compareTraffic.equals("light")) {
+                    try {
+                        trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\traffic1.jpg"));
+                        //System.out.println("Not the same");
+                        repaint();
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
+                    //System.out.println("Traffic is light");
+                } else if(compareTraffic.equals("medium")) {
+                    System.out.println("Traffic is medium");
+                } else if(compareTraffic.equals("heavy")) {
+                    System.out.println("Traffic is heavy!");
+                } else {
+                    System.out.println("Traffic is none");
+                }
+
                 accessIndex += 1;
                 if (accessIndex == 23) {
                     accessIndex = 0;
@@ -102,12 +141,20 @@ public class Vis extends JPanel implements MouseListener {
         weather.clear();
     }
 
+    public void resetTraffic() {
+        traffic.clear();
+    }
+
     public void addToTime(Float f) {
         time.add(f);
     }
 
     public void addToWeather(String s) {
         weather.add(s);
+    }
+
+    public void addToTraffic(String s) {
+        traffic.add(s);
     }
 
     @Override
@@ -118,12 +165,13 @@ public class Vis extends JPanel implements MouseListener {
 
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, w, h);
+        g.drawImage(backgroundImage,0,0,w,h,this);
 
         g.setColor(Color.BLACK);
         if (!time.isEmpty()){
             try {
                 //Storing image
-                timeImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\Final Project\\Sun.jpg"));
+                timeImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\Sun.jpg"));
                 //Showing image with resize
                 g.drawImage(timeImage, timePosition, 0, w/time.size(),h/10,this);
             } catch (IOException e) {
@@ -152,6 +200,10 @@ public class Vis extends JPanel implements MouseListener {
 //                g.drawString(s, buffer * i, 50);
 //                repaint();
 //            }
+        }
+
+        if (!traffic.isEmpty()) {
+            g.drawImage(trafficImage,w/2,h/2,w/(traffic.size() / 2),h/8,this);
         }
     }
 
