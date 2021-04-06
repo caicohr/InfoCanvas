@@ -1,0 +1,32 @@
+connect 'jdbc:derby:infocanvas;create=true';
+drop table infocanvas;
+create table infocanvas (
+ time float,
+ weather float,
+ traffic varchar(10),
+ aapl float
+);
+insert into infocanvas values (0,21,'light',126);
+insert into infocanvas values (1,20,'light',127);
+insert into infocanvas values (2,19,'light',130);
+insert into infocanvas values (3,19,'light',200);
+insert into infocanvas values (4,20,'light',345);
+insert into infocanvas values (5,21,'light',568);
+insert into infocanvas values (6,22,'medium',690);
+insert into infocanvas values (7,23,'medium',700);
+insert into infocanvas values (8,24,'heavy',889);
+insert into infocanvas values (9,24,'heavy',850);
+insert into infocanvas values (10,28,'heavy',740);
+insert into infocanvas values (11,30,'heavy',500);
+insert into infocanvas values (12,35,'medium',1200);
+insert into infocanvas values (13,37,'medium',2568);
+insert into infocanvas values (14,35,'medium',4579);
+insert into infocanvas values (15,34,'medium',3560);
+insert into infocanvas values (16,30,'medium',5367);
+insert into infocanvas values (17,25,'light',1234);
+insert into infocanvas values (18,22,'light',2134);
+insert into infocanvas values (19,16,'light',1500);
+insert into infocanvas values (20,16,'light',1204);
+insert into infocanvas values (21,17,'none',600);
+insert into infocanvas values (22,18,'none',256);
+insert into infocanvas values (23,19,'none',40);

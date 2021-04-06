@@ -1,4 +1,4 @@
-connect 'jdbc:derby:infovis;create=true;
+connect 'jdbc:derby:infovis;create=true';
 drop table infovis;
 create table infovis (
  time float,
