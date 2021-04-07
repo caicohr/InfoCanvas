@@ -59,11 +59,11 @@ public class BarChart extends JPanel {
             int buffer = w/weatherSize;
             g.setColor(Color.BLACK);
             //g.drawLine(20,20,20,h-20);
-            g.drawLine(20,(h/3), w-20, ((h/3)* 2) + 20);
+            g.drawLine(20,(h/3)* 2, w-20, (h/3)* 2);
             for (int i = 0; i < weatherSize; i ++) {
                 String s = "" + weather.get(i);
                 g.drawString(s, (buffer * i) + 20, h/3);
-                g.drawString(""+i,(buffer * i) + 20,(h/3)* 2);
+                g.drawString(""+i,(buffer * i) + 20,((h/3)* 2) + 30);
                 repaint();
             }
         }

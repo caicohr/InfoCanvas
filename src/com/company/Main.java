@@ -30,7 +30,7 @@ public class Main extends JFrame{
 
     private void countRows() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("SELECT COUNT(*) FROM infovis");
             rs.next();
@@ -45,7 +45,7 @@ public class Main extends JFrame{
     private void queryTime() {
         try {
             mainPanel.resetTime();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select Time From infovis");
             while (rs.next()) {
@@ -63,7 +63,7 @@ public class Main extends JFrame{
         try {
             mainPanel.resetWeather();
             mainPanel.resetWeatherTwo();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select weather From infovis");
             while (rs.next()) {
@@ -80,7 +80,7 @@ public class Main extends JFrame{
     private void queryTraffic() {
         try {
             mainPanel.resetTraffic();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
+            Connection c = DriverManager.getConnection("jdbc:derby:dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select traffic From infovis");
             while (rs.next()) {
@@ -98,7 +98,7 @@ public class Main extends JFrame{
         try {
             mainPanel.resetWeather();
             mainPanel.resetWeatherTwo();
-            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\secondDataSet\\infocanvas");
+            Connection c = DriverManager.getConnection("jdbc:derby:dataset\\secondDataSet\\infocanvas");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select weather from infocanvas");
             while (rs.next()) {
