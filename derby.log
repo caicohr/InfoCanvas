@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Tue Apr 06 01:05:42 HST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0178-a6dc-0de5-00000eb8cb70 
-on database directory D:\School\CS490 Info Vis\InfoCanvas\dataset\infovis with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3764951d 
+Tue Apr 06 16:35:04 HST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0178-aa2e-eaa5-00000eb8eaa0 
+on database directory D:\School\CS490 Info Vis\InfoCanvas\dataset\secondDataSet\infocanvas with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3764951d 
 Loaded from file:/D:/Dawnlowds/db-derby-10.15.2.0-lib/db-derby-10.15.2.0-lib/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=15.0.2+7-27

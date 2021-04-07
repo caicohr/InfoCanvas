@@ -62,6 +62,7 @@ public class Main extends JFrame{
     private void queryWeather() {
         try {
             mainPanel.resetWeather();
+            mainPanel.resetWeatherTwo();
             Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\infovis");
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("Select weather From infovis");
@@ -93,10 +94,29 @@ public class Main extends JFrame{
         }
     }
 
+    private void queryWeatherTwo() {
+        try {
+            mainPanel.resetWeather();
+            mainPanel.resetWeatherTwo();
+            Connection c = DriverManager.getConnection("jdbc:derby:D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\secondDataSet\\infocanvas");
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("Select weather from infocanvas");
+            while (rs.next()) {
+                Float f = rs.getFloat(1);
+                mainPanel.addToWeatherTwo(f);
+                repaint();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Could not connect to Derby");
+        }
+    }
+
     private JMenuBar setupMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenu timerMenu = new JMenu("Timer");
+        JMenu testTwo = new JMenu("Test Two");
         JMenu backgroundImageSubMenu = new JMenu("Background Image");
         JMenuItem park = new JMenuItem("Park");
         JMenuItem first = new JMenuItem("First");
@@ -105,9 +125,11 @@ public class Main extends JFrame{
         JMenuItem traffic = new JMenuItem("Add Traffic");
         JMenuItem startTimer = new JMenuItem("Start Timer");
         JMenuItem stopTimer = new JMenuItem("Stop Timer");
+        JMenuItem weatherTwo = new JMenuItem("Add Weather Two");
 
         menuBar.add(fileMenu);
         menuBar.add(timerMenu);
+        menuBar.add(testTwo);
         fileMenu.add(first);
         fileMenu.add(time);
         fileMenu.add(weather);
@@ -116,6 +138,7 @@ public class Main extends JFrame{
         backgroundImageSubMenu.add(park);
         timerMenu.add(startTimer);
         timerMenu.add(stopTimer);
+        testTwo.add(weatherTwo);
 
         first.addActionListener(new ActionListener() {
             @Override
@@ -164,6 +187,13 @@ public class Main extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainPanel.stopTimer();
+            }
+        });
+
+        weatherTwo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                queryWeatherTwo();
             }
         });
 
