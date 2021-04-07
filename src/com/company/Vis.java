@@ -72,7 +72,7 @@ public class Vis extends JPanel implements MouseListener {
                     String compareWeather = weather.get(accessIndex);
                     if (compareWeather.equals("cold")) {
                         try {
-                            weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weathercold.jpg"));
+                            weatherImage = ImageIO.read(new File("dataset\\images\\weathercold.jpg"));
                             //System.out.println("SAME");
                             repaint();
                         } catch (IOException ex) {
@@ -80,7 +80,7 @@ public class Vis extends JPanel implements MouseListener {
                         }
                     } else {
                         try {
-                            weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weather1.png"));
+                            weatherImage = ImageIO.read(new File("dataset\\images\\weather1.png"));
                             //System.out.println("Not the same");
                             repaint();
                         } catch (IOException ex) {
@@ -94,8 +94,8 @@ public class Vis extends JPanel implements MouseListener {
                     String compareTraffic = traffic.get(accessIndex);
                     if (compareTraffic.equals("light")) {
                         try {
-                            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
-                            trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
+                            trafficImage = ImageIO.read(new File("dataset\\images\\trafficNone.jpg"));
+                            trafficImageLight = ImageIO.read(new File("dataset\\images\\trafficLight.jpg"));
                             trafficImageMedium = null;
                             trafficImageHeavy =null;
                         } catch (IOException ex) {
@@ -104,9 +104,9 @@ public class Vis extends JPanel implements MouseListener {
                         //System.out.println("Traffic is light");
                     } else if(compareTraffic.equals("medium")) {
                         try {
-                            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
-                            trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
-                            trafficImageMedium = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficMedium.jpg"));
+                            trafficImage = ImageIO.read(new File("dataset\\images\\trafficNone.jpg"));
+                            trafficImageLight = ImageIO.read(new File("dataset\\images\\trafficLight.jpg"));
+                            trafficImageMedium = ImageIO.read(new File("dataset\\images\\trafficMedium.jpg"));
                             trafficImageHeavy = null;
                         } catch (IOException ex) {
                             System.out.println(ex);
@@ -114,17 +114,17 @@ public class Vis extends JPanel implements MouseListener {
                         //System.out.println("Traffic is medium");
                     } else if(compareTraffic.equals("heavy")) {
                         try {
-                            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
-                            trafficImageLight = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficLight.jpg"));
-                            trafficImageMedium = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficMedium.jpg"));
-                            trafficImageHeavy = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficHeavy.jpg"));
+                            trafficImage = ImageIO.read(new File("dataset\\images\\trafficNone.jpg"));
+                            trafficImageLight = ImageIO.read(new File("dataset\\images\\trafficLight.jpg"));
+                            trafficImageMedium = ImageIO.read(new File("dataset\\images\\trafficMedium.jpg"));
+                            trafficImageHeavy = ImageIO.read(new File("dataset\\images\\trafficHeavy.jpg"));
                         } catch (IOException ex) {
                             System.out.println(ex);
                         }
                         //System.out.println("Traffic is heavy!");
                     } else {
                         try {
-                            trafficImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\trafficNone.jpg"));
+                            trafficImage = ImageIO.read(new File("dataset\\images\\trafficNone.jpg"));
                             trafficImageLight = null;
                             trafficImageMedium = null;
                             trafficImageHeavy = null;
@@ -143,30 +143,32 @@ public class Vis extends JPanel implements MouseListener {
                     timePosition = 0;
                 }
 
-                Float compareWeatherTwo = weatherTwo.get(accessIndex);
-                if (compareWeatherTwo <= 18) {
-                    try {
-                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weatherColdest.gif"));
-                        System.out.println("Less than 18");
-                        repaint();
-                    } catch (IOException ex) {
-                        System.out.println(ex);
-                    }
-                } else if (compareWeatherTwo <= 26 && compareWeatherTwo >= 19){
-                    try {
-                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weatherWarm.gif"));
-                        System.out.println("Between 19 to 26");
-                        repaint();
-                    } catch (IOException ex) {
-                        System.out.println(ex);
-                    }
-                } else {
-                    try {
-                        weatherImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\weatherHottest.jpg"));
-                        System.out.println("More than 26");
-                        repaint();
-                    } catch (IOException ex) {
-                        System.out.println(ex);
+                if (!weatherTwo.isEmpty()){
+                    Float compareWeatherTwo = weatherTwo.get(accessIndex);
+                    if (compareWeatherTwo <= 18) {
+                        try {
+                            weatherImage = ImageIO.read(new File("dataset\\images\\weatherColdest.gif"));
+                            System.out.println("Less than 18");
+                            repaint();
+                        } catch (IOException ex) {
+                            System.out.println(ex);
+                        }
+                    } else if (compareWeatherTwo <= 26 && compareWeatherTwo >= 19){
+                        try {
+                            weatherImage = ImageIO.read(new File("dataset\\images\\weatherWarm.gif"));
+                            System.out.println("Between 19 to 26");
+                            repaint();
+                        } catch (IOException ex) {
+                            System.out.println(ex);
+                        }
+                    } else {
+                        try {
+                            weatherImage = ImageIO.read(new File("dataset\\images\\weatherHottest.jpg"));
+                            System.out.println("More than 26");
+                            repaint();
+                        } catch (IOException ex) {
+                            System.out.println(ex);
+                        }
                     }
                 }
             }
@@ -240,9 +242,10 @@ public class Vis extends JPanel implements MouseListener {
         if (!time.isEmpty()){
             try {
                 //Storing image
-                timeImage = ImageIO.read(new File("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\Sun.jpg"));
+                timeImage = ImageIO.read(new File("dataset\\images\\airBalloon.png"));
                 //Showing image with resize
                 g.drawImage(timeImage, timePosition, 0, w/time.size(),h/10,this);
+                repaint();
             } catch (IOException e) {
                 System.out.println(e);
             }
@@ -324,14 +327,28 @@ public class Vis extends JPanel implements MouseListener {
                 JButton button = new JButton("Show Input Dialog Box");
                 newPane.add(button);
                 newFrame.add(newPane);
-                newFrame.setSize(400,400);
+                newFrame.setSize(900,700);
                 newFrame.setTitle("Bar Chart for Weather Two");
                 //newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 newFrame.setVisible(true);
                 newFrame.setContentPane(barChart);
-                for (var w : weather) {
+                float min = 50;
+                float max = 0;
+                for (var w : weatherTwo) {
                     barChart.addToWeather(w);
+                    if (w > max) {
+                        max = w;
+                    }
+                    if (w < min) {
+                        min = w;
+                    }
                 }
+                for (var w: weatherTwo) {
+                    float rel = w/max;
+                    barChart.addToRelativeData(rel);
+                }
+                barChart.setMax(max);
+                barChart.setMin(min);
             }
         }
     }

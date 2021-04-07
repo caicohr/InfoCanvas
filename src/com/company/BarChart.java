@@ -9,10 +9,31 @@ public class BarChart extends JPanel {
     private int h;
     private int w;
     private ArrayList<String> weather;
+    private ArrayList<Float> weatherTwo;
+    private ArrayList<Float> relativeData;
+    private float max;
+    private float min;
 
     public BarChart() {
         super();
         weather = new ArrayList<>();
+        weatherTwo = new ArrayList<>();
+        relativeData = new ArrayList<>();
+    }
+
+    public void addToWeather(Float f) {
+        weatherTwo.add(f);
+    }
+
+    public void addToRelativeData(Float f) {
+        relativeData.add(f);
+    }
+
+    public void setMax(float f) {
+        max = f;
+    }
+    public void setMin(float f) {
+        min = f;
     }
 
     public void addToWeather(String s) {
@@ -21,6 +42,7 @@ public class BarChart extends JPanel {
 
     public void clearWeather() {
         weather.clear();
+        weatherTwo.clear();
     }
 
     @Override
@@ -29,7 +51,7 @@ public class BarChart extends JPanel {
         w = getWidth();
         h = getHeight();
 
-        g.setColor(Color.CYAN);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, w, h);
 
         if (!weather.isEmpty()) {
@@ -45,5 +67,29 @@ public class BarChart extends JPanel {
                 repaint();
             }
         }
+
+        if (!weatherTwo.isEmpty()) {
+            int weatherSizeTwo = weatherTwo.size();
+            int buffer = w/(weatherSizeTwo +1);
+            g.setColor(Color.BLACK);
+            g.drawLine(30,40, 30, h-20);
+            g.drawLine(30,h-20, w-5, h-20);
+            for (int i = 0; i < weatherSizeTwo; i ++) {
+                g.drawString("" + i,60 + (buffer * i), h);
+            }
+            float third = (max/4) * 3;
+            float second = (max/4) * 2;
+            g.drawString("" + max, 0, 40);
+            g.drawString("" + third,0, h/3);
+            g.drawString("" + second, 0, ((h/3) * 2));
+            g.drawString("0",0, h-20);
+            g.setColor(Color.GREEN);
+            for (int i = 0; i < weatherSizeTwo; i++) {
+                //g.fillRect(40 + (i * buffer), 30,buffer-5,((int)(relativeData.get(i) * h)) - 30);
+                g.fillRect(40 + (buffer * i), h - ((int)(relativeData.get(i) * h) - 50),buffer-5, (((int)(relativeData.get(i) * h))- 70));
+            }
+            repaint();
+        }
+
     }
 }
