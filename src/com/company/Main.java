@@ -172,7 +172,7 @@ public class Main extends JFrame{
         park.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainPanel.setBackgroundImage("D:\\School\\CS490 Info Vis\\InfoCanvas\\dataset\\images\\backgroundpark.png");
+                mainPanel.setBackgroundImage("dataset\\images\\backgroundpark.png");
             }
         });
 
